@@ -1,0 +1,45 @@
+/* =========================================================
+   HEAVY SOUL — checkout ANIMATIONS (keyframes + wiring)
+   All loops are gentle; everything stops for prefers-reduced-motion.
+   ========================================================= */
+@keyframes ck-rise{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+@keyframes ck-swing{ 0%,100%{ transform:rotate(-5deg); } 50%{ transform:rotate(5deg); } }
+@keyframes ck-thread{ to{ background-position:32px 0; } }
+@keyframes ck-spin{ to{ transform:rotate(360deg); } }
+@keyframes ck-truck{ 0%{ left:-70px; } 100%{ left:100%; } }
+@keyframes ck-road{ to{ background-position:-40px 0; } }
+@keyframes ck-wheel{ to{ transform:rotate(360deg); } }
+@keyframes ck-glow{ 0%,100%{ box-shadow:0 6px 22px rgba(196,43,56,.33); } 50%{ box-shadow:0 6px 34px rgba(196,43,56,.66); } }
+@keyframes ck-shine{ 0%,50%{ transform:translateX(-140%) skewX(-18deg); } 100%{ transform:translateX(320%) skewX(-18deg); } }
+@keyframes ck-nudge{ 0%,100%{ transform:translateX(0); } 50%{ transform:translateX(5px); } }
+@keyframes ck-float{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(24px,18px) scale(1.08); } }
+@keyframes ck-tick{ 0%{ stroke-dashoffset:26; } 20%,70%{ stroke-dashoffset:0; } 100%{ stroke-dashoffset:26; } }
+@keyframes ck-ring{ 0%{ transform:scale(.7); opacity:0; } 30%{ opacity:.9; } 100%{ transform:scale(1.7); opacity:0; } }
+@keyframes ck-beat{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+@keyframes ck-stripe{ to{ background-position:56px 0; } }
+@keyframes ck-pop{ 0%{ transform:scale(.96); } 60%{ transform:scale(1.02); } 100%{ transform:scale(1); } }
+
+.ck-rise{ animation:ck-rise .6s cubic-bezier(.2,.8,.2,1) var(--d,0s) both; }
+.ck-tag{ transform-origin:50% 6px; animation:ck-swing 3.6s ease-in-out infinite; }
+.ck-rhead span{ transform-origin:50% 100%; animation:ck-swing 4s ease-in-out infinite; }
+.ck-thread.done{ animation:ck-thread 1s linear infinite; }
+.ck-step.active svg .ring{ transform-box:fill-box; transform-origin:center; animation:ck-spin 6s linear infinite; }
+.ck-truck{ animation:ck-truck 6s linear infinite; }
+.ck-road i{ animation:ck-road 1.2s linear infinite; }
+.ck-wheel{ transform-box:fill-box; transform-origin:center; animation:ck-wheel .5s linear infinite; }
+.ck-cta{ animation:ck-glow 3s ease-in-out infinite; }
+.ck-cta::after{ content:""; position:absolute; top:0; bottom:0; width:30%; left:0; background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent); animation:ck-shine 3.2s ease-in-out infinite; }
+.ck-cta .arr svg{ animation:ck-nudge 1.3s ease-in-out infinite; }
+.ck-blob{ animation:ck-float 14s ease-in-out infinite; } .ck-blob.b{ animation-delay:-6s; }
+.ck-tick path{ stroke-dasharray:26; animation:ck-tick 4.5s ease-in-out infinite; }
+.ck-tick .halo{ animation:ck-ring 4.5s ease-out infinite; }
+.ck-addr.sel .stripe, .ck-recap .stripe{ animation:ck-stripe 2s linear infinite; }
+.ck-addr.sel{ animation:ck-pop .35s ease-out; }
+.ck-timer .dotb{ animation:ck-beat 1.4s ease-in-out infinite; }
+.ck-timer.low{ animation:ck-beat 1s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce){
+  .ck-rise,.ck-tag,.ck-rhead span,.ck-thread.done,.ck-step.active svg .ring,.ck-truck,.ck-road i,.ck-wheel,.ck-cta,.ck-cta::after,.ck-cta .arr svg,
+  .ck-blob,.ck-tick path,.ck-tick .halo,.ck-addr.sel .stripe,.ck-recap .stripe,.ck-addr.sel,.ck-timer .dotb,.ck-timer.low{ animation:none !important; }
+  .ck-tick path{ stroke-dashoffset:0; } .ck-truck{ left:40%; }
+}

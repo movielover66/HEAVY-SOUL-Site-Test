@@ -1,0 +1,47 @@
+/* HEAVY SOUL — refund card (colours from css/theme.css only) */
+.rf-mount{ margin-top:18px; }
+.rf-card{ background: var(--hs-surface); border:1px solid var(--hs-line); padding:22px; text-align:left; }
+.rf-h{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.rf-h h2{ font-size:20px; margin:0; }
+.rf-live{ display:inline-flex; align-items:center; gap:7px; font:500 10.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color: var(--hs-text-soft); }
+.rf-live i{ width:7px; height:7px; border-radius:50%; background: var(--hs-success); animation: rf-pulse 1.6s ease-in-out infinite; }
+@keyframes rf-pulse{ 50%{ opacity:.25; } }
+.rf-total{ margin:0 0 14px; font-size:13px; color: var(--hs-text-soft); }
+.rf-one{ border-top:1px solid var(--hs-line); padding-top:16px; margin-top:16px; }
+.rf-one:first-of-type{ border-top:0; padding-top:0; margin-top:0; }
+.rf-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; }
+.rf-top small{ display:block; font:10.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color: var(--hs-text-faint); }
+.rf-top strong{ font:600 28px var(--serif); color: var(--hs-text); }
+.rf-b{ font:500 10.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; font-style:normal; padding:6px 11px; border:1px solid currentColor; white-space:nowrap; }
+.rf-b.ok{ color: var(--hs-success); } .rf-b.wait{ color: var(--hs-warn); } .rf-b.bad{ color: var(--hs-accent-text); }
+
+.rf-steps{ list-style:none; margin:0; padding:0; }
+.rf-steps li{ position:relative; display:flex; gap:14px; padding-bottom:16px; }
+.rf-steps li:last-child{ padding-bottom:0; }
+.rf-steps li::before{ content:""; position:absolute; left:8px; top:20px; bottom:0; width:2px; background: var(--hs-line); }
+.rf-steps li:last-child::before{ display:none; }
+.rf-steps li.done::before{ background: var(--hs-accent); }
+.rf-steps i{ position:relative; flex:0 0 18px; width:18px; height:18px; border-radius:50%; background: var(--hs-bg); border:2px solid var(--hs-line); margin-top:1px; }
+.rf-steps .done i{ background: var(--hs-accent); border-color: var(--hs-accent); }
+.rf-steps .done i::after{ content:""; position:absolute; left:4.5px; top:1px; width:4px; height:8px; border: solid var(--hs-on-accent); border-width:0 2px 2px 0; transform:rotate(45deg); }
+.rf-steps .now i{ border-color: var(--hs-warn); }
+.rf-steps .now i::after{ content:""; position:absolute; inset:-2px; border-radius:50%; border:2px solid var(--hs-warn); animation: rf-ring 1.6s ease-out infinite; }
+@keyframes rf-ring{ from{ transform:scale(1); opacity:.9; } to{ transform:scale(2); opacity:0; } }
+.rf-steps .bad i{ background: var(--hs-accent); border-color: var(--hs-accent-text); }
+.rf-steps b{ display:block; font-size:14px; font-weight:600; color: var(--hs-text); }
+.rf-steps span{ display:block; font-size:12.5px; color: var(--hs-text-soft); line-height:1.4; margin-top:2px; }
+.rf-steps li:not(.done):not(.now):not(.bad) b{ color: var(--hs-text-faint); }
+
+.rf-meta{ margin:16px 0 0; display:grid; gap:8px; }
+.rf-meta div{ display:flex; justify-content:space-between; gap:12px; font-size:12.5px; border-top:1px dashed var(--hs-line); padding-top:8px; }
+.rf-meta dt{ color: var(--hs-text-faint); } .rf-meta dd{ margin:0; text-align:right; color: var(--hs-text); }
+.rf-meta code{ font-family: var(--mono); font-size:12px; word-break:break-all; }
+.rf-copy, .rf-retry{ background:transparent; color: var(--hs-text); border:1px solid var(--hs-line); font:500 10px var(--mono); letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; cursor:pointer; margin-left:6px; }
+.rf-copy:hover, .rf-retry:hover{ border-color: var(--hs-text); }
+.rf-alert{ margin:14px 0 0; padding:10px 12px; font-size:12.5px; color: var(--hs-text-soft); background: var(--hs-warn-bg); border-left:2px solid var(--hs-warn-line); }
+.rf-alert.bad{ background: var(--hs-danger-bg); border-left-color: var(--hs-accent); }
+.rf-alert a, .rf-msg a{ color: var(--hs-accent-text); text-decoration: underline; }
+.rf-msg{ margin:0; font-size:13.5px; color: var(--hs-text-soft); }
+.rf-foot{ margin:16px 0 0; font-size:11.5px; color: var(--hs-text-faint); line-height:1.5; }
+.rf-skel{ display:grid; gap:10px; } .rf-skel i{ height:14px; background: var(--hs-line); animation: rf-pulse 1.2s ease-in-out infinite; } .rf-skel i:nth-child(2){ width:70%; } .rf-skel i:nth-child(3){ width:45%; }
+@media (prefers-reduced-motion: reduce){ .rf-live i, .rf-steps .now i::after, .rf-skel i{ animation:none; } }

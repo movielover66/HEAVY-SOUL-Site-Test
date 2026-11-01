@@ -1,0 +1,135 @@
+/* =========================================================
+   HEAVY SOUL — success page layout + scene art
+   Colours come from css/theme.css only (var(--hs-*)).
+   ========================================================= */
+.ok-wrap{ max-width: 760px; margin: 0 auto; padding: 18px 20px 72px; text-align: center; }
+
+/* ---------- stage ---------- */
+.ok-stage{
+  position: relative; max-width: 640px; margin: 0 auto 26px;
+  aspect-ratio: 600 / 260; overflow: hidden;
+  background: radial-gradient(120% 90% at 55% 100%, var(--hs-accent-deep) 0%, var(--hs-surface) 55%, var(--hs-bg) 100%);
+  border: 1px solid var(--hs-line);
+}
+.ok-stage svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+
+.sv-city rect{ fill: var(--hs-bg); opacity:.55; }
+.sv-ground{ stroke: var(--hs-line); stroke-width: 2; }
+.sv-road{ fill:none; stroke: var(--hs-text-faint); stroke-width: 3; stroke-dasharray: 28 22; opacity:.55; }
+.sv-box{ fill: var(--hs-text); stroke: var(--hs-bg); stroke-width: 2; }
+.sv-tapefill{ fill: var(--hs-accent); }
+.sv-tapeline{ stroke: var(--hs-accent); stroke-width: 6; }
+.sv-label{ font: 700 13px var(--mono); fill: var(--hs-bg); letter-spacing: .1em; }
+.sv-frame{ fill:none; stroke: var(--hs-text); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.sv-seat{ fill: var(--hs-accent-hover); }
+.sv-leg{ fill:none; stroke: var(--hs-text-soft); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.sv-torso{ fill:none; stroke: var(--hs-accent); stroke-width: 20; stroke-linecap: round; }
+.sv-arm{ fill:none; stroke: var(--hs-accent); stroke-width: 8; stroke-linecap: round; }
+.sv-head{ fill: var(--hs-text); }
+.sv-helmet{ fill: var(--hs-accent-deep); stroke: var(--hs-accent-text); stroke-width: 2; }
+.sv-visor{ fill: var(--hs-bg); }
+.sv-tire{ fill: var(--hs-bg); stroke: var(--hs-text); stroke-width: 5; }
+.sv-spoke{ stroke: var(--hs-text-soft); stroke-width: 2; }
+.sv-speed{ stroke: var(--hs-text-soft); stroke-width: 3; stroke-linecap: round; fill: none; }
+.sv-eye{ fill: var(--hs-bg); }
+.sv-mouth{ fill:none; stroke: var(--hs-bg); stroke-width: 3; stroke-linecap: round; }
+.sv-cheek{ fill: var(--hs-accent-text); opacity:.7; }
+
+/* ---------- stamp / bubble / poke button ---------- */
+.ok-stamp{
+  position:absolute; left:50%; top:27%;
+  transform: translate(-50%,-50%) rotate(-7deg);
+  padding: 6px 16px; background: var(--hs-bg);
+  border: 3px solid var(--hs-accent-text); color: var(--hs-accent-text);
+  font: 700 clamp(12px,3.2vw,20px) var(--mono); letter-spacing:.16em; white-space:nowrap;
+}
+.ok-bubble{
+  position:absolute; left:55%; bottom:42%; transform: translateX(-50%);
+  width: max-content; max-width: 66%; margin:0; padding: 8px 12px;
+  background: var(--hs-text); color: var(--hs-bg);
+  font: 600 clamp(11px,2.6vw,13.5px)/1.35 var(--sans);
+}
+.ok-bubble::after{
+  content:""; position:absolute; left:50%; bottom:-7px; margin-left:-7px;
+  border: 7px solid transparent; border-bottom:0; border-top-color: var(--hs-text);
+}
+.ok-poke-btn{
+  position:absolute; left:50%; top:58%; width:10.5%; height:28%;
+  background:transparent; border:0; padding:0; cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.ok-poke-btn:focus-visible{ outline:2px solid var(--hs-accent-text); outline-offset:2px; }
+
+/* ---------- words ---------- */
+.ok-title{
+  margin: 10px 0 8px; font-family: var(--serif); font-weight: 600;
+  font-size: clamp(40px, 9vw, 70px); line-height: .98; letter-spacing: -.02em;
+}
+.ok-title .word{ display:inline-block; margin: 0 .12em; }
+.ok-title .acc{ color: var(--hs-accent-text); font-style: italic; }
+.ok-sub{ margin: 0 0 22px; color: var(--hs-text-soft); font-size: 16px; }
+
+/* ---------- order ticket ---------- */
+.ok-ticket{
+  position:relative; display:inline-flex; align-items:center; gap:22px; text-align:left;
+  padding: 14px 18px 14px 36px; background: var(--hs-surface); border: 1px solid var(--hs-line); overflow:hidden;
+}
+.ok-ticket::before{
+  content:""; position:absolute; left:14px; top:50%; width:8px; height:8px; margin-top:-4px;
+  border-radius:50%; border:1.5px solid var(--hs-text-faint);
+}
+.ok-ticket::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(110deg, transparent 35%, var(--hs-text) 50%, transparent 65%); opacity:.07;
+  background-size: 250% 100%;
+}
+.ok-ticket .eyebrow{ display:block; margin-bottom:2px; }
+.ok-id{ font: 700 clamp(16px,4.4vw,22px) var(--mono); color: var(--hs-accent-text); word-break: break-all; }
+.ok-copy{
+  min-height:40px; padding: 0 16px; background:transparent; color: var(--hs-text);
+  border:1px solid var(--hs-text); font: 500 11px var(--mono); letter-spacing:.12em; text-transform:uppercase;
+}
+.ok-copy:hover{ background: var(--hs-text); color: var(--hs-bg); }
+.ok-copymsg{ min-height: 20px; margin: 8px 0 18px; font: 11.5px var(--mono); color: var(--hs-success); }
+
+/* ---------- what happens next ---------- */
+.ok-steps{
+  position:relative; display:grid; grid-template-columns: repeat(4,1fr); gap:6px;
+  max-width: 600px; margin: 6px auto 26px; padding:0; list-style:none;
+}
+.ok-steps::before, .ok-steps::after{
+  content:""; position:absolute; top:11px; left:12.5%; height:2px; transform-origin:left;
+}
+.ok-steps::before{ right:12.5%; background: var(--hs-line); }
+.ok-steps::after{ width:25%; background: var(--hs-accent); transform: scaleX(1); }
+.ok-steps li{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+.ok-steps i{
+  position:relative; width:24px; height:24px; border-radius:50%;
+  background: var(--hs-bg); border:2px solid var(--hs-line);
+}
+.ok-steps .done i{ background: var(--hs-accent); border-color: var(--hs-accent); }
+.ok-steps .done i::before{
+  content:""; position:absolute; left:7px; top:3px; width:6px; height:11px;
+  border: solid var(--hs-on-accent); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+.ok-steps .now i{ border-color: var(--hs-accent-text); }
+.ok-steps .now i::after{
+  content:""; position:absolute; inset:-2px; border-radius:50%; border:2px solid var(--hs-accent-text);
+}
+.ok-steps b{ font: 500 11px var(--mono); letter-spacing:.08em; text-transform:uppercase; color: var(--hs-text); }
+.ok-steps span{ font-size: 11.5px; color: var(--hs-text-faint); line-height:1.3; max-width: 120px; }
+
+.ok-note{
+  max-width: 520px; margin: 0 auto 28px; padding: 14px 16px; text-align:left;
+  background: var(--hs-surface); border-left: 2px solid var(--hs-accent);
+  font-size: 13px; color: var(--hs-text-soft); line-height:1.55;
+}
+.ok-note em{ color: var(--hs-text-faint); font-style: normal; }
+.ok-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.ok-pokes{ margin: 26px 0 0; font: 11px var(--mono); letter-spacing:.08em; text-transform:uppercase; color: var(--hs-text-faint); }
+.ok-pokes b{ color: var(--hs-accent-text); }
+
+@media (max-width:520px){
+  .ok-wrap{ padding-left:14px; padding-right:14px; }
+  .ok-ticket{ gap:14px; padding-right:12px; }
+  .ok-steps span{ font-size:10.5px; }
+}
