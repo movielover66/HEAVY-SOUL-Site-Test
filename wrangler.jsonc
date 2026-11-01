@@ -1,0 +1,66 @@
+{
+  "name": "heavy-soul-site",
+  "compatibility_date": "2024-09-23",
+  "main": "src/index.js",
+  "vars": {
+    "APPS_SCRIPT_URL": "https://script.google.com/macros/s/AKfycbzHbUao38sh9dP6AiAu1p6cxeZl6KkZX56KPZaSi7t_1fwA6sBQgcudlT1tfgcqYSmR/exec",
+    // Must exactly match the 'API_SHARED_SECRET' Script Property in the
+    // Apps Script backend, same value as js/config.js's API_TOKEN.
+    "APPS_SCRIPT_API_TOKEN": "jsjshjeushe73uhebsi3u3h3882u2b382",
+    // Public values (same as FIREBASE_CONFIG in js/config.js) used by the
+    // /api/login-phone and /api/signup endpoints.
+    "FIREBASE_WEB_API_KEY": "AIzaSyAP8qb7o_cDBjaXhwE8jItCkDZ72fd6XmM",
+    "FIREBASE_PROJECT_ID": "heavy-soul-auth",
+    // "warn"   = reject an OTP only if MSG91's reply names a DIFFERENT phone.
+    // "strict" = also reject when the reply names no phone at all.
+    // /api/login-otp is always strict. Switch to "strict" after you have
+    // confirmed in `wrangler tail` that MSG91 returns the phone number.
+    "OTP_BINDING": "warn",
+    // Customer emails (Resend). RESEND_API_KEY itself is a Worker SECRET added in the dashboard, not here.
+    "MAIL_FROM": "Heavy Soul <support@heavysoul.in>",
+    "MAIL_REPLY_TO": "support@heavysoul.in",
+    "FORWARD_TO": "heavysoul.support@gmail.com",
+    "SITE_URL": "https://heavysoul.in"
+  },
+  // FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY is NOT declared here on purpose —
+  // it's ~1700 characters, over the Cloudflare Secrets Store's 1024-char
+  // limit. It must be added by hand as a classic Worker secret instead:
+  //   Workers & Pages → heavy-soul-site → Settings → Variables and secrets
+  //   → Add variable → Type: Secret → Name: FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY
+  // Everything below this line fits the Secrets Store's limit fine and is
+  // managed centrally there.
+  "secrets_store_secrets": [
+    {
+      "binding": "RAZORPAY_KEY_ID",
+      "store_id": "70b0de51e63841d78d9a2f5817beb776",
+      "secret_name": "RAZORPAY_KEY_ID"
+    },
+    {
+      "binding": "RAZORPAY_KEY_SECRET",
+      "store_id": "70b0de51e63841d78d9a2f5817beb776",
+      "secret_name": "RAZORPAY_KEY_SECRET"
+    },
+    {
+      "binding": "MSG91_AUTHKEY",
+      "store_id": "70b0de51e63841d78d9a2f5817beb776",
+      "secret_name": "MSG91_AUTHKEY"
+    },
+    {
+      "binding": "FIREBASE_SERVICE_ACCOUNT_EMAIL",
+      "store_id": "70b0de51e63841d78d9a2f5817beb776",
+      "secret_name": "FIREBASE_SERVICE_ACCOUNT_EMAIL"
+    }
+  ],
+  // Support-chat photos. Create the bucket once:  npx wrangler r2 bucket create heavy-soul-support
+  "r2_buckets": [
+    { "binding": "SUPPORT_FILES", "bucket_name": "heavy-soul-support" }
+  ],
+  // Runs the support cron job every hour (at minute 17).
+  "triggers": { "crons": ["17 * * * *"] },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": true
+  }
+}
