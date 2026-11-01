@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Track your Heavy Soul order in real time — status, courier and estimated delivery.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Track Order — Heavy Soul">
+<meta property="og:description" content="Track your Heavy Soul order in real time — status, courier and estimated delivery.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/track.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Track Order — Heavy Soul">
+<meta name="twitter:description" content="Track your Heavy Soul order in real time — status, courier and estimated delivery.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Track Order — Heavy Soul</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="css/track.css">
+<link rel="stylesheet" href="css/soft.css">
+<link rel="stylesheet" href="css/refund.css">
+</head>
+<body class="track-page">
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <button class="nav-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="track.html" class="active">Track order</a>
+      <a href="orders.html">Orders</a>
+      <a href="policy.html">Policies</a>
+      <a href="support.html">Support</a>
+      <a href="account.html" id="navLoginLink">Login / Signup</a>
+    </div>
+    <div class="nav-icons">
+      <a class="icon-btn" id="accountBtn" href="account.html" aria-label="Login / Signup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.6 5-5.5 7.5-5.5s5.8 1.9 7.5 5.5"/></svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="track.html">Track order</a>
+    <a href="orders.html">Orders</a>
+    <a href="policy.html">Policies</a>
+    <a href="account.html" id="navLoginLinkMobile">Login / Signup</a>
+  </div>
+</header>
+
+<main>
+<section class="trk-hero" id="trkHero">
+  <div class="hx-glow"></div>
+  <div class="hx-float" aria-hidden="true">
+    <svg class="hx-box b1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+    <svg class="hx-box b2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+    <svg class="hx-box b3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+    <svg class="hx-box b4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    <svg class="hx-box b5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+    <svg class="hx-box b6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+  </div>
+
+  <div class="trk-hero-in">
+    <p class="eyebrow hx-eb"><span class="trk-live"></span> Live parcel tracking</p>
+    <h1 class="hx-h1" aria-label="Where's your order?">
+      <span class="hx-line" aria-hidden="true"><span class="hx-w" style="--i:0">Where's</span> <span class="hx-w" style="--i:1">your</span></span>
+      <span class="hx-line hx-line2" aria-hidden="true">
+        <span class="hx-order"><span class="hx-w" style="--i:2">order</span><span class="hx-q">?</span></span>
+        <svg class="hx-underline" viewBox="0 0 320 24" preserveAspectRatio="none"><path d="M4 16 C 60 4, 110 22, 165 12 S 270 6, 316 14"/></svg>
+      </span>
+    </h1>
+    <p class="lead">Enter your Order ID to see live status, courier details, your items and estimated delivery.</p>
+    <div class="hx-ticker"><span>Right now, a parcel is being</span>
+      <span class="hx-words"><span class="hx-words-in"><b>packed</b><b>shipped</b><b>on its way</b><b>out for delivery</b><b>delivered</b><b>packed</b></span></span>
+    </div>
+  </div>
+
+  <div class="hx-scene" aria-hidden="true">
+    <svg class="hx-city" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 60V38h40V26h30v14h26V18h34v22h30V30h40v10h36V14h30v26h40V28h34v12h50V22h30v18h44V32h40v8h36V16h32v24h30V30h46v10h40V24h34v16h50V34h36v6h40V20h30v20h44V30h38v10h46V26h30v14h40V18h34v22h36V32h44v8h34V24h30v16h40V30h40v30Z" fill="rgba(251,249,245,.05)"/></svg>
+    <div class="hx-pin hx-pin-a"><i></i><span>Warehouse</span></div>
+    <div class="hx-pin hx-pin-b"><i></i><span>You</span></div>
+    <div class="hx-road"></div>
+    <div class="hx-truck">
+      <svg viewBox="0 0 120 60" fill="none">
+        <g class="hx-bob">
+          <rect x="30" y="2" width="22" height="18" rx="1" fill="#E8B4BB"/><path d="M30 11h22M41 2v18" stroke="#14120F" stroke-width="1.5"/>
+        </g>
+        <rect x="4" y="18" width="72" height="26" fill="#FBF9F5"/>
+        <rect x="4" y="18" width="72" height="5" fill="#6E1420"/>
+        <path d="M76 24h20l12 12v8H76Z" fill="#E8B4BB"/>
+        <path d="M88 27h7l7 8H88Z" fill="#14120F" opacity=".75"/>
+        <g class="hx-wheel" style="transform-origin:24px 47px"><circle cx="24" cy="47" r="8" fill="#14120F" stroke="#FBF9F5" stroke-width="2"/><path d="M24 40v14M17 47h14" stroke="#FBF9F5" stroke-width="1.5"/></g>
+        <g class="hx-wheel" style="transform-origin:94px 47px"><circle cx="94" cy="47" r="8" fill="#14120F" stroke="#FBF9F5" stroke-width="2"/><path d="M94 40v14M87 47h14" stroke="#FBF9F5" stroke-width="1.5"/></g>
+      </svg>
+      <span class="hx-speed"><i></i><i></i><i></i></span>
+    </div>
+  </div>
+</section>
+
+<div class="trk-wrap">
+  <form id="trackForm" class="trk-search" autocomplete="off">
+    <label for="orderIdInput">Order ID</label>
+    <input type="text" id="orderIdInput" placeholder="e.g. HS-20260724-448" required autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <button type="submit" class="btn" id="trackBtn"><span>Track order</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+
+  <div class="trk-recent" id="trkRecent"></div>
+
+  <div class="trk-note" id="autoFillNote">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+    Order ID filled in from your link — tap Track to see the latest status.
+  </div>
+
+  <p class="trk-help">Your Order ID was sent on WhatsApp at checkout. Can't find it? <a href="https://wa.me/919339909978" target="_blank" rel="noopener">Message us</a>.</p>
+
+  <div id="trackResult" aria-live="polite">
+    <div class="trk-empty">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h13l3 4v6h-3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><b>Live status</b><span>Confirmed, packed, shipped, out for delivery — updated automatically.</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b>Your items</b><span>Every product, size, quantity and price from your order.</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Route &amp; courier</b><span>Last scan on a map, tracking number and rider contact.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="trk-trust">
+  <div><b>Secure payments</b>100% secure &amp; encrypted</div>
+  <div><b>Real-time tracking</b>Status refreshes every 30 seconds</div>
+  <div><b>24/7 support</b>We're here to help on WhatsApp</div>
+  <div><b>Premium quality</b>Streetwear you can trust</div>
+</div>
+
+<section class="trk-faq">
+  <div class="trk-faq-in">
+    <div>
+      <p class="eyebrow">Good to know</p>
+      <h2>Questions people ask</h2>
+      <p class="hint">Not here? Message us on WhatsApp and a real person will reply.</p>
+      <a class="btn outline trk-btn-sm" href="https://wa.me/919339909978" target="_blank" rel="noopener">Ask on WhatsApp →</a>
+    </div>
+    <div class="trk-faq-list">
+      <details><summary>When will my order arrive?</summary><p>Your estimated delivery date is shown at the top of your order. It refreshes as the courier scans your parcel, and on the delivery day you will see it as "Out for delivery".</p></details>
+      <details><summary>The status has not changed. Is something wrong?</summary><p>Courier scans can pause for a day, especially during long road legs between hubs. This page refreshes every 30 seconds, so just keep it open. If nothing moves for 2 days, message us.</p></details>
+      <details><summary>Can I cancel or change my order?</summary><p>If cancelling is still possible, a Cancel button appears on your order with a countdown. For an address or size change, message us on WhatsApp as early as you can.</p></details>
+      <details><summary>How does Cash on Delivery work?</summary><p>You pay a small advance online and the balance to the rider at your door. The exact balance is shown in your order summary and again on the delivery day.</p></details>
+      <details><summary>How do returns and exchanges work?</summary><p>Read the full steps on our <a href="policy.html">policies page</a>, or message us with your Order ID and we will guide you.</p></details>
+      <details><summary>I cannot find my Order ID.</summary><p>It was sent to you on WhatsApp right after checkout. You can also open <a href="orders.html">My orders</a> after logging in.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="js/config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/products.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="js/refund-status.js"></script>
+<script src="js/track.js"></script>
+<script src="js/support-launcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="View your Heavy Soul order history.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="My Orders — Heavy Soul">
+<meta property="og:description" content="View your Heavy Soul order history.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/orders.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My Orders — Heavy Soul">
+<meta name="twitter:description" content="View your Heavy Soul order history.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>My Orders — Heavy Soul</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="css/orders.css">
+<link rel="stylesheet" href="css/soft.css">
+</head>
+<body class="orders-page">
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <button class="nav-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="track.html">Track order</a>
+      <a href="orders.html" class="active">Orders</a>
+      <a href="policy.html">Policies</a>
+      <a href="account.html" id="navLoginLink">Login / Signup</a>
+    </div>
+    <div class="nav-icons">
+      <a class="icon-btn" id="accountBtn" href="account.html" aria-label="Login / Signup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.6 5-5.5 7.5-5.5s5.8 1.9 7.5 5.5"/></svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="track.html">Track order</a>
+    <a href="orders.html">Orders</a>
+    <a href="policy.html">Policies</a>
+    <a href="account.html" id="navLoginLinkMobile">Login / Signup</a>
+  </div>
+</header>
+
+<main>
+<section class="od-hero" id="odHero">
+  <div class="od-glow"></div>
+  <div class="od-float" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></div>
+  <div class="od-hero-in">
+    <p class="eyebrow"><i></i> Order history</p>
+    <h1 aria-label="My orders"><span class="od-w" style="--i:0" aria-hidden="true">My</span> <span class="od-it"><span class="od-w" style="--i:1" aria-hidden="true">orders</span></span></h1>
+    <p class="lead">Every Heavy Soul order you have placed while logged in, with live status, in one place.</p>
+    <div class="od-stats" id="odStats">
+      <div class="od-stat" style="--i:0"><small>Total orders</small><b data-stat="total">0</b></div>
+      <div class="od-stat live" style="--i:1"><small>On the way</small><b data-stat="live">0</b></div>
+      <div class="od-stat" style="--i:2"><small>Delivered</small><b data-stat="done">0</b></div>
+      <div class="od-stat" style="--i:3"><small>Total spent</small><b data-stat="spent">₹0</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="od-wrap">
+  <!-- logged OUT -->
+  <div id="ordersLoginPrompt" style="display:none;">
+    <div class="od-login">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 7h13l3 4v6h-3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M3 7v7h4"/></svg>
+      <h2>Log in to see your orders</h2>
+      <p>Your order history, live status and one-tap reorder are waiting. Placed an order as a guest? Use Track order with your Order ID.</p>
+      <div class="row"><a href="account.html" class="od-btn">Login / Signup</a><a href="track.html" class="od-btn ghost">Track an order</a></div>
+    </div>
+  </div>
+
+  <!-- logged IN -->
+  <div id="ordersLoggedIn" style="display:none;">
+    <div id="odSpot"></div>
+    <div class="od-controls">
+      <div class="od-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="orderSearchInput" placeholder="Search by Order ID or item" autocomplete="off">
+      </div>
+      <div class="od-tabs" id="odTabs">
+        <button class="od-tab active" data-filter="all">All <em>0</em></button>
+        <button class="od-tab" data-filter="active">Active <em>0</em></button>
+        <button class="od-tab" data-filter="delivered">Delivered <em>0</em></button>
+        <button class="od-tab" data-filter="cancelled">Cancelled <em>0</em></button>
+      </div>
+      <select class="od-sort" id="odSort" aria-label="Sort orders"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="amount">Highest amount</option></select>
+    </div>
+    <div id="ordersList">
+      <div class="od-skel"><div class="a sk"></div><div class="b"><div class="sk" style="width:30%"></div><div class="sk" style="width:60%"></div><div class="sk" style="width:40%"></div></div></div>
+      <div class="od-skel"><div class="a sk"></div><div class="b"><div class="sk" style="width:30%"></div><div class="sk" style="width:60%"></div><div class="sk" style="width:40%"></div></div></div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/msg91-otp.js"></script>
+<script src="js/auth-unified.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/orders-page.js"></script>
+<script src="js/support-launcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Admin — Heavy Soul</title>
+<style>
+  :root{
+    --bg:var(--hs-bg); --panel:var(--hs-surface); --line:var(--hs-line); --text:var(--hs-text);
+    --muted:#A8A59D; --lime:var(--hs-accent); --red:var(--hs-accent); --ink:var(--hs-bg);
+  }
+  *{ box-sizing:border-box; }
+  html{ color-scheme:dark; }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; font-size:15px; line-height:1.4; }
+  button,input,select,textarea{ font:inherit; color:inherit; }
+  button{ cursor:pointer; }
+  .hidden{ display:none !important; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:32px 24px 96px; }
+
+  /* buttons */
+  .btn{ min-height:44px; padding:0 18px; border-radius:8px; border:1px solid var(--line); background:none; font-weight:600; }
+  .btn:hover{ border-color:var(--muted); }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+  .btn.primary{ background:var(--lime); color:var(--ink); border-color:var(--lime); }
+  .btn.light{ background:var(--text); color:var(--ink); border-color:var(--text); }
+  .btn.danger{ color:var(--red); border-color:var(--red); }
+  .btn.sm{ min-height:40px; padding:0 14px; font-size:14px; }
+
+  /* login */
+  .login{ max-width:380px; margin:12vh auto 0; padding:28px; background:var(--panel); border:1px solid var(--line); border-radius:12px; }
+  .login h1{ margin:0 0 18px; font-size:22px; }
+
+  /* fields */
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:13px; color:var(--muted); }
+  .field input,.field select,.field textarea{ min-height:46px; padding:10px 14px; background:var(--bg); border:1px solid var(--muted); border-radius:8px; }
+  .field textarea{ resize:vertical; }
+  .field input:focus,.field select:focus,.field textarea:focus,.btn:focus-visible,.switch:focus-visible{ outline:2px solid var(--lime); outline-offset:2px; }
+  .err{ color:var(--red); font-size:13px; min-height:18px; margin:8px 0 0; }
+
+  /* header + toolbar */
+  .head{ display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; }
+  .eyebrow{ font-size:13px; letter-spacing:.14em; color:var(--lime); }
+  h1.title{ margin:8px 0 0; font-size:40px; font-weight:800; line-height:1.1; }
+  .sub{ margin:8px 0 0; color:var(--muted); }
+  .toolbar{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:28px 0 18px; }
+  .toolbar input[type=search]{ flex:1; min-width:200px; min-height:44px; padding:0 14px; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; }
+  .chipbtn{ min-height:44px; padding:0 16px; border-radius:8px; border:1px solid var(--line); background:none; }
+  .chipbtn[aria-pressed=true]{ background:var(--text); color:var(--ink); border-color:var(--text); font-weight:600; }
+  .status{ min-height:20px; color:var(--muted); font-size:13px; margin:0 0 10px; }
+
+  /* rows */
+  .row{ display:grid; grid-template-columns:56px minmax(160px,1.3fr) minmax(200px,2fr) auto; gap:20px; align-items:center; padding:16px 20px; margin-bottom:12px; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+  .row.is-out{ opacity:.85; }
+  .row.is-hidden{ opacity:.6; }
+  .thumb{ width:56px; height:64px; border-radius:6px; background:var(--line); object-fit:cover; }
+  .pname{ font-weight:600; }
+  .pmeta{ font-size:13px; color:var(--muted); margin-top:4px; }
+  .badge{ display:inline-block; margin-left:8px; padding:1px 7px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; border:1px solid var(--muted); border-radius:4px; color:var(--muted); }
+  .sizes{ display:flex; gap:8px; flex-wrap:wrap; }
+  .size{ display:inline-flex; gap:6px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; font-size:13px; }
+  .size.out{ border-color:var(--red); color:var(--red); }
+  .size.untracked{ color:var(--muted); }
+  .actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+  .switchwrap{ display:flex; gap:10px; align-items:center; min-width:130px; }
+  .switch{ width:52px; height:30px; border-radius:15px; border:0; padding:3px; background:var(--line); display:flex; justify-content:flex-start; flex-shrink:0; }
+  .switch .knob{ width:24px; height:24px; border-radius:12px; background:var(--muted); }
+  .switch[aria-checked=true]{ background:var(--lime); justify-content:flex-end; }
+  .switch[aria-checked=true] .knob{ background:var(--ink); }
+  .switchlabel{ font-size:13px; }
+  .switchlabel.out{ color:var(--red); }
+  .empty{ padding:40px 0; color:var(--muted); text-align:center; }
+
+  @media (max-width:860px){
+    .row{ grid-template-columns:56px 1fr; }
+    .sizes,.actions{ grid-column:1 / -1; justify-content:flex-start; }
+    h1.title{ font-size:32px; }
+  }
+
+  /* dialogs */
+  dialog{ width:min(640px,calc(100vw - 32px)); max-height:calc(100vh - 32px); padding:0; background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:12px; }
+  dialog::backdrop{ background:rgba(0,0,0,.7); }
+  .dlg{ padding:24px; }
+  .dlg h2{ margin:0 0 6px; font-size:22px; }
+  .dlg .hint{ margin:0 0 18px; color:var(--muted); font-size:13px; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14px 16px; }
+  .grid2 .full{ grid-column:1 / -1; }
+  @media (max-width:560px){ .grid2{ grid-template-columns:1fr; } }
+  .stockgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:12px; }
+  .dlgfoot{ display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+  .dlgfoot .spacer{ flex:1; }
+
+  /* photos */
+  .imgs{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0; }
+  .tile{ position:relative; width:84px; height:84px; }
+  .tile img{ width:100%; height:100%; object-fit:cover; border:1.5px solid var(--line); border-radius:6px; }
+  .tile.main img{ border-color:var(--lime); }
+  .tile .tag{ position:absolute; bottom:4px; left:4px; background:var(--lime); color:var(--ink); font-size:10px; font-weight:700; text-transform:uppercase; padding:1px 5px; border-radius:3px; }
+  .tile .rm{ position:absolute; top:-8px; right:-8px; width:28px; height:28px; border-radius:50%; border:0; background:var(--text); color:var(--ink); font-size:12px; }
+
+  /* tabs + banners */
+  .tabs{ display:flex; gap:8px; margin:24px 0 0; border-bottom:1px solid var(--line); }
+  .tabs button{ min-height:46px; padding:0 20px; background:none; border:0; border-bottom:3px solid transparent; color:var(--muted); font-weight:600; margin-bottom:-1px; }
+  .tabs button[aria-pressed=true]{ color:var(--text); border-bottom-color:var(--lime); }
+  .bncard{ display:grid; grid-template-columns:96px 1fr; gap:14px; padding:14px; margin-bottom:12px; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+  .bncard.off{ opacity:.6; }
+  .bncard img{ width:96px; height:120px; object-fit:cover; border-radius:6px; background:var(--line); }
+  .bnacts{ grid-column:1 / -1; display:flex; gap:8px; flex-wrap:wrap; }
+  .csec{ border:1px solid var(--line); border-radius:10px; margin-bottom:12px; background:var(--panel); }
+  .csec summary{ padding:16px; font-weight:700; cursor:pointer; min-height:52px; display:flex; align-items:center; }
+  .csec .cbody{ padding:0 16px 16px; display:grid; gap:14px; }
+  .cimg{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .cimg img{ width:72px; height:90px; object-fit:cover; border-radius:6px; background:var(--line); }
+  .cthumbs{ display:flex; gap:8px; flex-wrap:wrap; }
+  .cthumbs .th{ position:relative; }
+  .cthumbs .th img{ width:72px; height:90px; object-fit:cover; border-radius:6px; display:block; background:var(--line); }
+  .cthumbs .th button{ position:absolute; top:2px; right:2px; width:26px; height:26px; border-radius:50%; border:0; background:rgba(0,0,0,.75); color:var(--hs-text); font-size:16px; line-height:1; }
+  .savebar{ position:sticky; bottom:0; background:var(--bg); padding:14px 0; border-top:1px solid var(--line); display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .bndlg{ display:grid; gap:14px; }
+  .bnprev{ display:flex; gap:12px; align-items:center; }
+  .bnprev img{ width:96px; height:120px; object-fit:cover; border-radius:6px; background:var(--line); }
+  .toast{ position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); background:var(--text); color:var(--ink); padding:12px 18px; border-radius:8px; font-size:14px; font-weight:600; opacity:0; pointer-events:none; transition:all .25s ease; z-index:9999; }
+  .toast.show{ opacity:1; transform:translate(-50%,0); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div id="loginScreen" class="login">
+    <h1>Heavy Soul Admin</h1>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Admin password">
+      </div>
+      <p id="loginError" class="err" role="alert"></p>
+      <button type="submit" id="loginBtn" class="btn primary" style="width:100%;margin-top:10px;">Log in</button>
+    </form>
+  </div>
+
+  <!-- PANEL -->
+  <div id="panelScreen" class="hidden">
+    <div class="head">
+      <div>
+        <div class="eyebrow">HEAVY SOUL / ADMIN</div>
+        <h1 class="title">Inventory</h1>
+        <p class="sub">Mark a whole product or a single size as out of stock. The storefront updates right away.</p>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button id="addProductBtn" class="btn primary">+ Add product</button>
+        <button id="logoutBtn" class="btn">Log out</button>
+      </div>
+    </div>
+
+    <div class="tabs" role="group" aria-label="Admin sections">
+      <button type="button" id="tabInv" aria-pressed="true">Inventory</button>
+      <button type="button" id="tabBan" aria-pressed="false">Banners</button>
+      <button type="button" id="tabCon" aria-pressed="false">Site content</button>
+      <a href="admin-support.html" class="adm-link" style="align-self:center;margin-left:8px;color:var(--hs-accent-text);font-size:13px">Support tickets →</a>
+    </div>
+
+    <div id="invView">
+    <div class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search name, SKU or category" aria-label="Search products">
+      <div class="filters" role="group" aria-label="Filter products">
+        <button class="chipbtn" data-filter="all" aria-pressed="true">All</button>
+        <button class="chipbtn" data-filter="in" aria-pressed="false">In stock</button>
+        <button class="chipbtn" data-filter="out" aria-pressed="false">Out of stock</button>
+        <button class="chipbtn" data-filter="hidden" aria-pressed="false">Hidden</button>
+      </div>
+    </div>
+
+    <p id="listStatus" class="status" aria-live="polite"></p>
+    <div id="productList"></div>
+    <p class="status" style="margin-top:18px;">Size chip shows the size and units left. 0 means that size is sold out. “Stock not tracked” means the product is always available.</p>
+    </div>
+
+    <div id="banView" class="hidden">
+      <div class="toolbar"><button id="bnAdd" class="btn primary">+ Add banner</button></div>
+      <p id="bnStatus" class="status" aria-live="polite"></p>
+      <div id="bnList"></div>
+    </div>
+
+    <div id="conView" class="hidden">
+      <p id="conStatus" class="status" aria-live="polite"></p>
+      <div id="conList"></div>
+      <div class="savebar"><button id="conSave" class="btn primary">Save all changes</button><span id="conMsg" class="status" aria-live="polite"></span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BANNER DIALOG -->
+<dialog id="bnDlg" aria-labelledby="bnTitle">
+  <form id="bnForm" class="dlg bndlg">
+    <h2 id="bnTitle">Add banner</h2>
+    <div class="field"><label for="bnLayout">Banner style</label>
+      <select id="bnLayout"><option value="overlay">Text on photo — we add heading + button</option><option value="photo">Photo only — my photo already has the text (poster/banner)</option></select>
+      <p class="hint" id="bnLayoutHint"></p></div>
+    <div class="field">
+      <label for="bnImg">Photo (computer / wide)</label>
+      <div class="bnprev"><img id="bnPrev" alt="" class="hidden"><div><input id="bnImg" type="file" accept="image/*"><p class="status" id="bnImgStatus"></p></div></div>
+    </div>
+    <div class="field"><label for="bnImgM">Phone photo (optional)</label>
+      <div class="bnprev"><img id="bnPrevM" alt="" class="hidden"><div><input id="bnImgM" type="file" accept="image/*"><p class="status" id="bnImgMStatus"></p><button type="button" class="btn sm hidden" id="bnImgMClear">Remove phone photo</button></div></div>
+      <p class="hint">Upload a taller version (about 4:5) so it fills a phone screen. If you skip this, the main photo is used on phones too.</p></div>
+    <div id="bnTextFields">
+    <div class="field"><label for="bnKicker">Small label (top line)</label><input id="bnKicker" maxlength="40" placeholder="e.g. KTM Duke series"></div>
+    <div class="field"><label for="bnL1">Big heading — line 1</label><input id="bnL1" required maxlength="22" placeholder="RIDE"></div>
+    <div class="field"><label for="bnL2">Big heading — line 2 (optional)</label><input id="bnL2" maxlength="22" placeholder="LOUD."></div>
+    <div class="field"><label for="bnText">Short text</label><textarea id="bnText" rows="2" maxlength="120" placeholder="One short line about this banner"></textarea></div>
+    <div class="field"><label for="bnBtn">Button text</label><input id="bnBtn" maxlength="28" placeholder="Shop tees"></div>
+    </div>
+    <div class="field"><label for="bnLink">Button goes to</label>
+      <input id="bnLink" list="bnLinks" placeholder="shop.html" autocomplete="off">
+      <datalist id="bnLinks"><option value="shop.html"><option value="shop.html?category=T-Shirts"><option value="shop.html?category=Hoodies"><option value="shop.html?category=Bottoms"><option value="shop.html?category=Outerwear"><option value="shop.html?category=Custom"></datalist>
+    </div>
+    <div class="field"><label for="bnTheme">Colour (desktop)</label>
+      <select id="bnTheme"><option value="ink">Black + red</option><option value="ember">Black + orange</option><option value="oxblood">Oxblood</option><option value="bone">Bone (light)</option></select>
+    </div>
+    <div class="field"><label for="bnVis">Visibility</label>
+      <select id="bnVis"><option value="Active">Active — shown on site</option><option value="Hidden">Hidden</option></select>
+    </div>
+    <p class="err" id="bnErr" role="alert"></p>
+    <div class="dlgfoot"><button type="submit" class="btn primary" id="bnSave">Save banner</button><button type="button" class="btn" id="bnCancel">Cancel</button></div>
+  </form>
+</dialog>
+
+<!-- STOCK DIALOG -->
+<dialog id="stockDialog" aria-labelledby="stockTitle">
+  <div class="dlg">
+    <h2 id="stockTitle">Edit stock</h2>
+    <p class="hint" id="stockHint">Units available per size. 0 = sold out.</p>
+    <div id="stockFields" class="stockgrid"></div>
+    <p id="stockError" class="err" role="alert"></p>
+    <div class="dlgfoot">
+      <button type="button" id="stockSaveBtn" class="btn primary">Save stock</button>
+      <button type="button" id="stockAllOutBtn" class="btn danger">Mark all sold out</button>
+      <span class="spacer"></span>
+      <button type="button" id="stockUntrackBtn" class="btn">Stop tracking</button>
+      <button type="button" id="stockCancelBtn" class="btn">Cancel</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- PRODUCT FORM DIALOG -->
+<dialog id="formDialog" aria-labelledby="formTitle">
+  <form id="productForm" class="dlg">
+    <h2 id="formTitle">Add product</h2>
+    <p class="hint">Stock is set separately with “Edit stock”.</p>
+    <div class="grid2">
+      <div class="field full">
+        <label for="fName">T-shirt name</label>
+        <input id="fName" type="text" required placeholder="e.g. Oxblood Graphic Tee">
+      </div>
+      <div class="field">
+        <label for="fCategory">Category</label>
+        <input id="fCategory" type="text" required placeholder="T-Shirts" list="categoryOptions">
+        <datalist id="categoryOptions">
+          <option value="T-Shirts"><option value="Hoodies"><option value="Shirts">
+          <option value="Bottoms"><option value="Outerwear"><option value="Accessories"><option value="Custom">
+        </datalist>
+      </div>
+      <div class="field">
+        <label for="fOrderType">Order type</label>
+        <select id="fOrderType">
+          <option value="collection">Ready stock (collection)</option>
+          <option value="custom">Made to order (custom)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fPrice">Price (₹)</label>
+        <input id="fPrice" type="number" min="1" step="1" required placeholder="549">
+      </div>
+      <div class="field">
+        <label for="fSku">SKU (used for courier bulk upload)</label>
+        <input id="fSku" type="text" placeholder="e.g. HS-TEE-INK-001">
+      </div>
+      <div class="field">
+        <label for="fCompareAt">Compare-at price (₹, optional)</label>
+        <input id="fCompareAt" type="number" min="1" step="1" placeholder="Leave blank if no discount">
+      </div>
+      <div class="field">
+        <label for="fBadge">Badge (optional)</label>
+        <input id="fBadge" type="text" placeholder="New / Best Seller / Limited">
+      </div>
+      <div class="field">
+        <label for="fStatus">Visibility</label>
+        <select id="fStatus">
+          <option value="Active">Active — shown on site</option>
+          <option value="Hidden">Hidden — not shown yet</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="fSizes">Sizes (comma-separated)</label>
+        <input id="fSizes" type="text" required placeholder="S, M, L, XL, XXL">
+      </div>
+      <div class="field full">
+        <label for="fDescription">Description</label>
+        <textarea id="fDescription" rows="4" required placeholder="240 GSM heavyweight cotton, boxy fit..."></textarea>
+      </div>
+      <div class="field full">
+        <label for="imageInput">Photos (first one is the main photo)</label>
+        <div id="imageGrid" class="imgs"></div>
+        <input id="imageInput" type="file" accept="image/*" multiple>
+        <p id="imageStatus" class="status"></p>
+      </div>
+    </div>
+    <p id="formError" class="err" role="alert"></p>
+    <div class="dlgfoot">
+      <button type="submit" id="saveBtn" class="btn primary">Save product</button>
+      <button type="button" id="cancelFormBtn" class="btn">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admin-banners.js"></script>
+<script src="js/site-content.js"></script>
+<script src="js/admin-content.js"></script>
+</body>
+</html>

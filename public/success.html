@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Order confirmed — Heavy Soul">
+<meta property="og:description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/success.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Order confirmed — Heavy Soul">
+<meta name="twitter:description" content="Your Heavy Soul order is confirmed — thank you for shopping with us.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Order confirmed — Heavy Soul</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/success.css">
+<link rel="stylesheet" href="css/success-anim.css">
+</head>
+<body class="ok-page">
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div></div>
+    <div></div>
+  </nav>
+</header>
+
+<main class="ok-wrap">
+
+  <!-- ============ the little movie ============ -->
+  <section class="ok-stage" id="okStage" aria-label="Order confirmed">
+    <svg viewBox="0 0 600 260" role="img" aria-label="A delivery rider zooms in, tosses your parcel, and speeds off.">
+      <g class="sv-city">
+        <rect x="20" y="122" width="46" height="94"/><rect x="74" y="92" width="38" height="124"/><rect x="120" y="142" width="52" height="74"/>
+        <rect x="440" y="112" width="44" height="104"/><rect x="492" y="138" width="58" height="78"/><rect x="556" y="102" width="34" height="114"/>
+      </g>
+      <line class="sv-ground" x1="0" y1="216" x2="600" y2="216"/>
+      <path class="sv-road" d="M0 240H600"/>
+
+      <!-- rider -->
+      <g class="rider">
+        <g class="bob">
+          <g class="speed"><path class="sv-speed" d="M20 150H56M6 172H44M28 192H62"/></g>
+          <g class="ride-box">
+            <rect class="sv-box" x="82" y="116" width="40" height="38" rx="3"/>
+            <path class="sv-tapeline" d="M82 128H122"/>
+            <text class="sv-label" x="102" y="146" text-anchor="middle">HS</text>
+          </g>
+          <path class="sv-frame" d="M98 200L112 178H176L190 200"/>
+          <path class="sv-frame" d="M176 178L184 138H198"/>
+          <rect class="sv-seat" x="108" y="166" width="36" height="10" rx="5"/>
+          <path class="sv-leg" d="M126 170L150 186L146 200"/>
+          <path class="sv-torso" d="M124 168L136 128"/>
+          <path class="sv-arm" d="M136 136L186 140"/>
+          <circle class="sv-head" cx="140" cy="110" r="12"/>
+          <path class="sv-helmet" d="M127 108A13 13 0 0 1 153 108Z"/>
+          <rect class="sv-visor" x="148" y="104" width="9" height="5" rx="2"/>
+          <g transform="translate(98 200)"><g class="spin"><circle class="sv-tire" r="16"/><path class="sv-spoke" d="M-16 0H16M0-16V16"/></g></g>
+          <g transform="translate(190 200)"><g class="spin"><circle class="sv-tire" r="16"/><path class="sv-spoke" d="M-16 0H16M0-16V16"/></g></g>
+        </g>
+      </g>
+
+      <!-- the parcel (has feelings) -->
+      <g transform="translate(330 216)">
+        <g class="drop"><g class="idle"><g class="poke" id="pokeG">
+          <rect class="sv-box" x="-30" y="-54" width="60" height="54" rx="3"/>
+          <rect class="sv-tapefill" x="-6" y="-54" width="12" height="54"/>
+          <g class="eyes"><circle class="sv-eye" cx="-17" cy="-32" r="4.5"/><circle class="sv-eye" cx="17" cy="-32" r="4.5"/></g>
+          <path class="sv-mouth" d="M-9 -17Q0 -8 9 -17"/>
+          <circle class="sv-cheek" cx="-23" cy="-21" r="3.5"/><circle class="sv-cheek" cx="23" cy="-21" r="3.5"/>
+        </g></g></g>
+      </g>
+    </svg>
+
+    <div class="ok-stamp" aria-hidden="true">ORDER LOCKED IN</div>
+    <p class="ok-bubble" id="bubble" aria-live="polite">Your hoodie is doing stretches before the trip.</p>
+    <button class="ok-poke-btn" id="pokeBtn" type="button" aria-label="Poke the parcel"></button>
+  </section>
+
+  <!-- ============ the words ============ -->
+  <p class="eyebrow reveal" style="--d:3.0s">Order submitted</p>
+  <h1 class="ok-title" aria-label="Boom. Ekdom set.">
+    <span class="word" style="--d:2.9s">Boom.</span>
+    <span class="word acc" style="--d:3.05s">Ekdom</span>
+    <span class="word acc" style="--d:3.2s">set.</span>
+  </h1>
+  <p class="ok-sub reveal" style="--d:3.4s">Thank you — we've got your order.</p>
+
+  <div class="ok-ticket reveal" id="orderTicket" style="--d:3.55s">
+    <div>
+      <span class="eyebrow">Order ID</span>
+      <b class="ok-id" id="orderId">Generating…</b>
+    </div>
+    <button class="ok-copy" id="copyBtn" type="button">Copy</button>
+  </div>
+  <p class="ok-copymsg" id="copyMsg" aria-live="polite"></p>
+
+  <ol class="ok-steps reveal" style="--d:3.7s" aria-label="What happens next">
+    <li class="done"><i></i><b>Placed</b><span>You did that. Legend.</span></li>
+    <li class="now"><i></i><b>Packing</b><span>Folding with respect.</span></li>
+    <li><i></i><b>On the way</b><span>Courier is stretching.</span></li>
+    <li><i></i><b>At your door</b><span>Time to flex.</span></li>
+  </ol>
+
+  <p class="ok-note reveal" style="--d:3.9s">We've opened WhatsApp with your order details — please send that message if you haven't already, so we can confirm and start processing. <em>(Yes, everyone forgets to press send.)</em></p>
+
+  <div class="ok-actions reveal" style="--d:4.05s">
+    <a href="shop.html" class="btn outline">Continue shopping</a>
+    <a href="track.html" class="btn" id="trackLink">Track this order</a>
+  </div>
+
+  <p class="ok-pokes reveal" style="--d:4.2s">Parcel pokes: <b id="pokeCount">0</b> <span>— go on, it likes it.</span></p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/success-confetti.js"></script>
+<script src="js/success.js"></script>
+<script src="js/support-launcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Browse Heavy Soul's full edit — oversized tees, heavyweight hoodies, outerwear and made-to-order custom prints, all 240+ GSM cotton.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Shop — Heavy Soul">
+<meta property="og:description" content="Browse Heavy Soul's full edit — oversized tees, heavyweight hoodies, outerwear and made-to-order custom prints, all 240+ GSM cotton.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/shop.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shop — Heavy Soul">
+<meta name="twitter:description" content="Browse Heavy Soul's full edit — oversized tees, heavyweight hoodies, outerwear and made-to-order custom prints, all 240+ GSM cotton.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Shop — Heavy Soul</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="notice-bar">Free shipping over ₹1499 · Made-to-order pieces ship in 5–7 days</div>
+  <nav class="nav wrap">
+    <button class="nav-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="shop.html?category=Custom">Custom</a>
+      <a href="track.html">Track order</a>
+      <a href="orders.html">Orders</a>
+      <a href="policy.html">Policies</a>
+      <a href="account.html" id="navLoginLink">Login / Signup</a>
+    </div>
+    <div class="nav-icons">
+      <a class="icon-btn" id="accountBtn" href="account.html" aria-label="Login / Signup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.6 5-5.5 7.5-5.5s5.8 1.9 7.5 5.5"/></svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="shop.html?category=Custom">Custom</a>
+    <a href="track.html">Track order</a>
+    <a href="orders.html">Orders</a>
+    <a href="policy.html">Policies</a>
+    <a href="account.html" id="navLoginLinkMobile">Login / Signup</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumb"><a href="index.html">Home</a> / Shop</p>
+</div>
+
+<section class="section tight">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">The full edit</p>
+        <h2>Shop all</h2>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="chip-row" id="chipRow"></div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span id="resultCount" class="eyebrow"></span>
+        <select class="sort-select" id="sortSelect">
+          <option value="featured">Sort: Featured</option>
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid" id="shopGrid"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">Heavy Soul</div>
+        <p style="color:var(--ink-soft); margin-top:14px; max-width:280px; font-size:13.5px;">Heavyweight streetwear essentials, cut for everyday armor.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="shop.html?category=T-Shirts">T-Shirts</a></li>
+          <li><a href="shop.html?category=Hoodies">Hoodies</a></li>
+          <li><a href="shop.html?category=Bottoms">Bottoms</a></li>
+          <li><a href="shop.html?category=Custom">Custom</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Support</h5>
+        <ul>
+          <li><a href="track.html">Track order</a></li>
+          <li><a href="policy.html">Shipping &amp; returns</a></li>
+          <li><a href="policy.html">Privacy policy</a></li>
+          <li><a href="cart.html">Your bag</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p style="font-size:13px; color:var(--ink-soft);">Message us on WhatsApp for sizing help or order support — link on the cart &amp; payment pages.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/msg91-otp.js"></script>
+<script src="js/auth-unified.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/products.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/app.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/support-launcher.js" defer></script>
+</body>
+</html>

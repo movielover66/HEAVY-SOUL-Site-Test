@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Pay securely for your Heavy Soul order — UPI, cards, netbanking, wallets or cash on delivery.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Payment — Heavy Soul">
+<meta property="og:description" content="Pay securely for your Heavy Soul order — UPI, cards, netbanking, wallets or cash on delivery.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/payment.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Payment — Heavy Soul">
+<meta name="twitter:description" content="Pay securely for your Heavy Soul order — UPI, cards, netbanking, wallets or cash on delivery.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Payment — Heavy Soul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/checkout-flow.css">
+<link rel="stylesheet" href="css/checkout-anim.css">
+</head>
+<body class="ck-page">
+<div class="ck-blobs" aria-hidden="true"><i class="ck-blob a"></i><i class="ck-blob b"></i></div>
+<header class="ck-head"><a class="ck-brand" href="index.html">HEAVY SOUL</a><nav class="ck-steps" aria-label="Checkout steps"><div class="ck-step done"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="var(--hs-success)" stroke="var(--hs-success)" stroke-width="1.5"/><circle cx="15" cy="15" r="8.5" fill="none" stroke="var(--hs-bg)" stroke-opacity=".35"/><path d="M9 15.5l4 4 8-9" fill="none" stroke="var(--hs-bg)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bag</span></div><i class="ck-thread done"></i><div class="ck-step done"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="var(--hs-success)" stroke="var(--hs-success)" stroke-width="1.5"/><circle cx="15" cy="15" r="8.5" fill="none" stroke="var(--hs-bg)" stroke-opacity=".35"/><path d="M9 15.5l4 4 8-9" fill="none" stroke="var(--hs-bg)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Address</span></div><i class="ck-thread done"></i><div class="ck-step active"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="var(--hs-accent)" stroke="var(--hs-accent)" stroke-width="1.5"/><circle cx="15" cy="15" r="8.5" fill="none" stroke="var(--hs-bg)" stroke-opacity=".35"/><circle cx="12" cy="12" r="1.7" fill="var(--hs-bg)"/><circle cx="12" cy="18" r="1.7" fill="var(--hs-bg)"/><circle cx="18" cy="12" r="1.7" fill="var(--hs-bg)"/><circle cx="18" cy="18" r="1.7" fill="var(--hs-bg)"/><circle class="ring" cx="15" cy="15" r="14.2" fill="none" stroke="var(--hs-accent-text)" stroke-width="1.6" stroke-dasharray="5 6"/></svg><span>Payment</span></div></nav><span class="ck-secure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="3"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure</span></header>
+<svg class="ck-wave" viewBox="0 0 1440 20" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q 30 0 60 10 T 120 10 T 180 10 T 240 10 T 300 10 T 360 10 T 420 10 T 480 10 T 540 10 T 600 10 T 660 10 T 720 10 T 780 10 T 840 10 T 900 10 T 960 10 T 1020 10 T 1080 10 T 1140 10 T 1200 10 T 1260 10 T 1320 10 T 1380 10 T 1440 10"/></svg>
+<main class="ck-main" id="paymentMain">
+  <div class="ck-col">
+    <div class="ck-rise"><span class="ck-hello">almost there</span><p class="ck-eyebrow">Step 3 of 3</p><h1 class="ck-title">Last step. Pay and it’s yours.</h1></div>
+
+    <div class="ck-timer ck-rise" id="timerBox" style="--d:.05s"><span class="l"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="none" stroke="var(--hs-line)" stroke-width="4"/><circle id="ringArc" cx="22" cy="22" r="20" fill="none" stroke="var(--hs-accent)" stroke-width="4" stroke-linecap="round" transform="rotate(-90 22 22)" style="stroke-dasharray:126;stroke-dashoffset:0"/></svg><span><i class="dotb" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--hs-accent);margin-right:8px"></i>Complete payment within</span></span><b class="clock" id="clock">10:00</b></div>
+
+    <section class="ck-recap ck-rise" style="--d:.1s" id="recap"><div class="stripe"></div><div class="in"><div class="top"><span>Delivering to</span><a href="checkout.html">Change</a></div><div class="txt" id="recapTxt">…</div></div></section>
+
+    <section class="ck-card ck-rise" style="--d:.15s"><div class="ck-cardhead"><span class="ck-tag"><b>03</b></span><h2>Payment</h2></div>
+      <button type="button" id="btnPrepaid" class="ck-method active" onclick="setMethod('prepaid')"><span class="dot"></span><span class="mb"><span class="t">Pay in full <span class="ck-badge">Faster confirm</span></span><span class="s">Pick UPI, card, netbanking or wallet in Razorpay’s secure window.</span><span class="a" id="mPrepaidAmt">—</span></span></button>
+      <div class="ck-meth-chips"><span>UPI</span><span>Cards</span><span>Netbanking</span><span>Wallets</span></div>
+      <button type="button" id="btnCod" class="ck-method" onclick="setMethod('cod')"><span class="dot"></span><span class="mb"><span class="t">Cash on delivery</span><span class="s">Pay a small advance now to confirm. Pay the balance to the courier at your door.</span><span class="a" id="mCodAmt">—</span></span></button>
+      <p class="ck-hint" id="codExplainer" style="display:none">With Cash on delivery, you pay a small advance now to confirm the order, and the rest to the courier when it arrives.</p>
+      <div class="ck-trust"><div class="h"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hs-success)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Secured by Razorpay</div><ul><li>We never see or store your card or UPI details</li><li>Price shown is final: no hidden charges</li><li>After payment, WhatsApp opens with your order details. Send the message to confirm.</li></ul></div>
+    </section>
+    <div class="ck-est"><div class="ck-road"><i></i><span class="ck-truck"><svg width="56" height="30" viewBox="0 0 56 30" aria-hidden="true"><rect x="2" y="3" width="32" height="18" rx="4" fill="var(--hs-accent)"/><path d="M34 8h10l8 8v5H34z" fill="var(--hs-text)"/><path d="M38 11h5l4 4h-9z" fill="var(--hs-bg)"/><g class="ck-wheel"><circle cx="14" cy="23" r="5" fill="var(--hs-bg)" stroke="var(--hs-text)" stroke-width="2"/><path d="M14 19v8M10 23h8" stroke="var(--hs-text)" stroke-width="1.2"/></g><g class="ck-wheel"><circle cx="42" cy="23" r="5" fill="var(--hs-bg)" stroke="var(--hs-text)" stroke-width="2"/><path d="M42 19v8M38 23h8" stroke="var(--hs-text)" stroke-width="1.2"/></g></svg></span></div><p><b>Handmade to order.</b> Dispatch in 2–3 business days, then about 7 days to reach you. Expected <b id="estText">—</b>.</p></div>
+    <button class="ck-cta desk simple" type="button" onclick="placeOrder()" id="payBtn">Proceed to pay</button>
+    <p class="ck-fine">No amount is charged if you leave before paying.</p>
+  </div>
+  <aside class="ck-receipt ck-rise" id="receipt" style="--d:.2s"><div class="ck-rin"><div class="ck-rhead"><h3>Order summary</h3><span>nice picks!</span></div><div id="checkoutItems"></div>
+    <div class="ck-rows"><div class="receipt-row"><span class="k">Item total</span><span class="v" id="subtotalVal">₹0</span></div>
+      <div class="receipt-row hidden" id="rowHandling"><span class="k">COD handling</span><span class="v" id="handlingVal">₹0</span></div>
+      <div class="receipt-row hidden" id="rowGrandTotal"><span class="k">Total payable</span><span class="v" id="grandTotalVal">₹0</span></div></div>
+    <div class="receipt-stamp"><span class="k" id="dueLabel">Pay now</span><span class="v" id="dueVal">₹0</span></div>
+    <div class="receipt-row muted hidden" id="rowRemaining"><span class="k">Balance on delivery</span><span class="v" id="remainingVal">₹0</span></div>
+    <p class="receipt-note" id="codNote" style="display:none">You'll pay the balance in cash (or UPI) directly to the delivery agent when your order arrives.</p></div></aside>
+</main>
+<div class="cancelled-view hidden" id="cancelledView">
+  <h2>Payment window expired</h2>
+  <p style="color:var(--hs-text-soft); margin:14px 0 26px;">Your order wasn't confirmed in time and has been cancelled. No amount was charged — you can check out again whenever you're ready.</p>
+  <a href="shop.html" class="btn">Back to shop</a>
+</div>
+<div class="ck-bar" id="payBar"><div class="amt"><small id="barDueLabel">Pay now</small><b id="barDueVal">₹0</b><span class="sub hidden" id="barRemainingSub"></span></div><button class="ck-cta" type="button" onclick="placeOrder()" id="payBtnBar"><span class="lbl">Pay securely</span><span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
+<div id="payBarSpacer" class="hidden"></div>
+<!-- Razorpay Checkout Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/address-book.js"></script>
+<script src="js/payment.js"></script>
+<script src="js/payment-fx.js"></script>
+</body>
+</html>

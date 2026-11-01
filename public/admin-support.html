@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Live support — Heavy Soul admin</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/support-admin.css">
+</head>
+<body class="adm-page">
+<main class="adm">
+  <div id="login" class="adm-login">
+    <h2>Support admin</h2>
+    <form id="loginForm"><label>Admin password<input id="pw" type="password" autocomplete="current-password" required></label>
+    <p class="adm-err" id="loginErr"></p><button class="btn" type="submit">Open inbox</button></form>
+  </div>
+
+  <div id="app" hidden>
+    <div class="adm-top">
+      <h1>Live support</h1>
+      <span class="adm-top-r">
+        <button type="button" id="snd" class="adm-pill" title="Play a sound when a customer needs a person">Sound: off</button>
+        <a href="admin.html">← Admin</a><a href="#" id="logout">Log out</a>
+      </span>
+    </div>
+    <div class="adm-stats" id="stats"></div>
+    <div class="adm-tabs" id="tabs"></div>
+    <div class="adm-chips" id="chips"></div>
+    <div id="report" class="adm-report" hidden></div>
+    <div class="adm-grid">
+      <aside class="adm-list" id="list"></aside>
+      <section class="adm-chat" id="detail"><div class="adm-empty"><b>Select a chat</b><span>Customers who ask for a person show up under “Needs reply”.</span></div></section>
+    </div>
+  </div>
+  <div class="lb" id="lb" hidden><button type="button" aria-label="Close">×</button><img alt=""></div>
+</main>
+<script src="js/admin-support.js"></script>
+</body>
+</html>

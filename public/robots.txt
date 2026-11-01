@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Don't index cart/checkout/payment/account flows — no SEO value,
+# and payment.html carries a live session state.
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /payment.html
+Disallow: /account.html
+Disallow: /reset-password.html
+Disallow: /success.html
+
+Sitemap: https://heavysoul.in/sitemap.xml

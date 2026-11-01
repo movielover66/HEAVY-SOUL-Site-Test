@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="Review your bag before checkout — Heavy Soul heavyweight streetwear, ships across India.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Heavy Soul">
+<meta property="og:title" content="Your Bag — Heavy Soul">
+<meta property="og:description" content="Review your bag before checkout — Heavy Soul heavyweight streetwear, ships across India.">
+<meta property="og:image" content="https://heavysoul.in/assets/og-image.jpg">
+<meta property="og:url" content="https://heavysoul.in/cart.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Bag — Heavy Soul">
+<meta name="twitter:description" content="Review your bag before checkout — Heavy Soul heavyweight streetwear, ships across India.">
+<meta name="twitter:image" content="https://heavysoul.in/assets/og-image.jpg">
+<title>Your Bag — Heavy Soul</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cart-v2.css">
+<noscript><style>.cv-bill.pre .cv-ticket{transform:none!important;animation:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ---------- Login / Signup bottom sheet (shown on Checkout) ---------- -->
+<div id="authModalOverlay">
+  <div class="auth-sheet">
+    <div class="auth-sheet-close" onclick="closeAuthModal()">&times;</div>
+    <h2>Login / Signup</h2>
+    <span class="auth-modal-msg" id="authModalMsg"></span>
+
+    <div class="auth-modal-step active" id="authStep-start">
+      <div class="field">
+        <input id="authEmailInput" type="email" placeholder="Enter email">
+      </div>
+      <button class="btn accent block" id="authEmailBtn" onclick="handleEmailContinue()">Continue</button>
+      <div class="auth-or">OR</div>
+      <button class="auth-google-btn" onclick="signInWithGoogle()">
+        <svg viewBox="0 0 48 48" width="18" height="18"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.4 29.3 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.3 1 7.3 2.7l6-6C33.9 6.5 29.2 4.5 24 4.5 12.9 4.5 4 13.4 4 24.5S12.9 44.5 24 44.5 44 35.6 44 24.5c0-1.4-.1-2.7-.4-4z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.6 15.9 18.9 13 24 13c2.8 0 5.3 1 7.3 2.7l6-6C33.9 6.5 29.2 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"/><path fill="#4CAF50" d="M24 44.5c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 39.9 16.2 44.5 24 44.5z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.6l6.2 5.2C40.5 36.3 44 31 44 24.5c0-1.4-.1-2.7-.4-4z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- Existing account: password only -->
+    <div class="auth-modal-step" id="authStep-login">
+      <p style="font-size:13px; color:var(--ink-soft);">
+        <strong id="loginEmailDisplay"></strong>
+        <span class="auth-otp-edit" onclick="backToEmailStep()" style="margin-left:8px;">change</span>
+      </p>
+      <div class="field">
+        <input id="authLoginPassword" type="password" placeholder="Password">
+      </div>
+      <span class="auth-otp-edit" onclick="handleModalForgotPassword()">Forgot password?</span>
+      <button class="btn accent block" id="modalLoginBtn" onclick="handleModalLogin()">Log in</button>
+    </div>
+
+    <!-- New email: name + password -->
+    <div class="auth-modal-step" id="authStep-signup">
+      <p style="font-size:13px; color:var(--ink-soft);">
+        <strong id="signupEmailDisplay"></strong>
+        <span class="auth-otp-edit" onclick="backToEmailStep()" style="margin-left:8px;">change</span>
+      </p>
+      <div class="field">
+        <input id="authSignupName" type="text" placeholder="Full name">
+      </div>
+      <div class="field">
+        <input id="authSignupPassword" type="password" placeholder="Password (min 6 characters)">
+      </div>
+      <button class="btn accent block" id="modalSignupBtn" onclick="handleModalSignup()">Sign up</button>
+    </div>
+
+    <div class="auth-modal-step" id="authStep-details">
+      <p style="font-size:13px; color:var(--ink-soft);">আপনার প্রথমবার — শিপিং-এর জন্য এই তথ্যগুলো দিন</p>
+      <div class="field">
+        <input id="authDetailsName" type="text" placeholder="Full name">
+      </div>
+      <div class="field">
+        <input id="authDetailsPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="Mobile number">
+      </div>
+      <button class="btn ghost block" id="authSendOtpBtn" onclick="sendPhoneOtp()" style="margin-bottom:8px;">Send OTP</button>
+
+      <div class="field" id="authOtpField" style="display:none;">
+        <input id="authOtpInput" type="tel" inputmode="numeric" maxlength="6" placeholder="Enter OTP">
+      </div>
+      <button class="btn ghost block" id="authVerifyOtpBtn" onclick="verifyPhoneOtp()" style="display:none; margin-bottom:8px;">Verify OTP</button>
+
+      <button class="btn accent block" id="authDetailsBtn" onclick="completeSignupDetails()" style="display:none;">Continue</button>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <button class="nav-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="brand">Heavy Soul<small>Est. 2026</small></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="shop.html?category=Custom">Custom</a>
+      <a href="track.html">Track order</a>
+      <a href="orders.html">Orders</a>
+      <a href="policy.html">Policies</a>
+      <a href="account.html" id="navLoginLink">Login / Signup</a>
+    </div>
+    <div class="nav-icons">
+      <a class="icon-btn" id="accountBtn" href="account.html" aria-label="Login / Signup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.7-3.6 5-5.5 7.5-5.5s5.8 1.9 7.5 5.5"/></svg>
+      </a>
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="shop.html?category=Custom">Custom</a>
+    <a href="track.html">Track order</a>
+    <a href="orders.html">Orders</a>
+    <a href="policy.html">Policies</a>
+    <a href="account.html" id="navLoginLinkMobile">Login / Signup</a>
+  </div>
+</header>
+
+<div class="wrap cv2">
+  <p class="crumb"><a href="index.html">Home</a> / Your bag</p>
+  <div class="cv-head"><h1>Your <em>bag</em></h1><span class="cv-pill" id="cartCountLabel">0 PIECES</span></div>
+
+  <div class="cv-layout" id="cartLayout">
+    <div class="cv-left">
+      <div class="cv-free"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 10h5l3 3v3h-8"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>FREE DELIVERY ON EVERY ORDER</div>
+      <div id="cartItems"></div>
+    </div>
+
+    <aside class="cv-bill pre" aria-label="Price details">
+      <!-- Billing machine: the bill prints out of it -->
+      <div class="cv-machine">
+        <div class="m-leds" aria-hidden="true"><i class="led r"></i><i class="led g"></i></div>
+        <div class="m-lcd" id="cvLcd" aria-live="polite">BILL READY</div>
+        <button type="button" class="m-snd" id="cvSnd" aria-pressed="true" aria-label="Printing sound is on. Tap to turn it off">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path class="waves" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/><path class="slash" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+        </button>
+        <div class="m-slot" aria-hidden="true"></div>
+      </div>
+      <div class="cv-paper">
+    <div class="cv-ticket">
+      <div class="lab">ORDER SUMMARY</div>
+      <h3>Price details</h3>
+      <div class="cv-row"><span id="cartMrpLabel">Price</span><b id="cartMrp">₹0</b></div>
+      <div class="cv-row hidden" id="cartDiscRow"><span>Discount</span><b class="red" id="cartDiscount">−₹0</b></div>
+      <div class="cv-row"><span>Delivery charges</span><b class="red">FREE</b></div>
+      <div class="cv-div"></div>
+      <div class="cv-total"><span>TOTAL AMOUNT</span><span id="cartTotal">₹0</span></div>
+      <div class="cv-save hidden" id="cartSaveBox">You will save <span id="cartSaveAmt">₹0</span> on this order</div>
+      <!-- Desktop checkout button. On phones it is hidden and the swipe bar at the bottom is used instead. -->
+      <button onclick="requireAuthThenGo('checkout.html')" class="cv-cta"><i></i>CHECKOUT <b>→</b></button>
+      <a href="shop.html" class="cv-cont">CONTINUE SHOPPING</a>
+    </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="empty-state hidden" id="cartEmpty">
+    <h2>Your bag is empty</h2>
+    <p>Looks like you haven't added anything yet.</p>
+    <a href="shop.html" class="btn">Shop the edit</a>
+  </div>
+</div>
+
+<!-- Phones: swipe-to-checkout bar. Drag the arrow to the right (or press Enter on it) to continue. -->
+<div class="cv-sticky hidden" id="cvSticky">
+  <div class="t"><small>TOTAL</small><b id="cartTotal2">₹0</b></div>
+  <div class="cv-swipe" id="cvSwipe" role="group" aria-label="Swipe to checkout">
+    <span class="sw-fill" aria-hidden="true"></span>
+    <span class="sw-label" aria-hidden="true">SWIPE TO CHECKOUT <span class="sw-chev"><i>›</i><i>›</i><i>›</i></span></span>
+    <div class="sw-hint">
+      <button type="button" class="sw-thumb" id="cvThumb" aria-label="Checkout. Drag this arrow to the right, or press Enter, to continue">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>© 2026 Heavy Soul. All rights reserved.</span>
+      <span>Prices in INR · Ships across India</span>
+      <span>Trade Reg. No. 3549 (Saptagram GP, Hooghly)</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/msg91-otp.js"></script>
+<script src="js/auth-unified.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/products.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart-swipe.js"></script>
+<script src="js/cart-bill.js"></script>
+<script src="js/support-launcher.js" defer></script>
+</body>
+</html>
