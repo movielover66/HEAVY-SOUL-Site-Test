@@ -1,0 +1,6 @@
+- Site files moved into public/; wrangler assets.directory = ./public
+- src/index.js = newer Worker (server-side pricing + payment binding) merged with hourly cron, R2 file route and the email() handler
+- public/js/payment.js: items now include `id` (newer Worker prices the cart by id)
+- Removed from public: js/index.js and js/supportbot.js (Worker code)
+- Moved to _review/: backend.js commerce.js debugger.js script.js track-legacy.js backend-account.js
+- Token (APPS_SCRIPT_API_TOKEN) still in wrangler.jsonc, js/config.js, js/payment.js: removed in Step B/C

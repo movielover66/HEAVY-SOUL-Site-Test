@@ -1,0 +1,23 @@
+SETUP - Heavy Soul live support
+1. Copy the files from this zip into your project (same folders), replacing old ones.
+2. One-time: npx wrangler r2 bucket create heavy-soul-support
+3. Deploy: npx wrangler deploy
+4. Hourly job (already in wrangler.jsonc): closes chats idle 3 days, nudges customers after 24h silence,
+   alerts you on overdue tickets, deletes photos 7 days after a chat closes.
+5. Agent inbox: /admin-support.html (same admin password).
+
+EMAILS TO CUSTOMERS (ticket raised / chat closed / "also email this reply") - needs a free Resend account:
+   a) resend.com -> sign up -> Domains -> add heavysoul.in and add the DNS records they show (so mail comes from support@heavysoul.in).
+   b) resend.com -> API Keys -> create key.
+   c) npx wrangler secret put RESEND_API_KEY        (paste the key)
+   d) Optional vars in wrangler.jsonc "vars": MAIL_FROM = "Heavy Soul <support@heavysoul.in>",
+      MAIL_REPLY_TO = "your-gmail@gmail.com" (customer replies to the email land in this inbox),
+      SITE_URL = "https://heavysoul.in"
+   Until RESEND_API_KEY is set nothing breaks: the thread just shows "email NOT sent: email service isn't set up yet".
+   The customer's email comes from their account / past orders; you can also type it in the Ticket box.
+
+OPTIONAL - phone alerts on Telegram (new ticket / overdue / low rating):
+   a) Telegram -> @BotFather -> /newbot -> copy the token.
+   b) Send any message to your bot, open https://api.telegram.org/bot<TOKEN>/getUpdates and copy "chat":{"id":...}
+   c) npx wrangler secret put TELEGRAM_BOT_TOKEN ; npx wrangler secret put TELEGRAM_CHAT_ID
+Team hours used by the bot: 10 AM-7 PM IST, Mon-Sat. Change teamOnline_() in src/lib/support.js.
