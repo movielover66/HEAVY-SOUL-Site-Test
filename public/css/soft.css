@@ -1,0 +1,86 @@
+/* =========================================================
+   HEAVY SOUL — SOFT / ROUNDED skin for track + orders pages.
+   Loaded AFTER track.css / orders.css. Remove the <link> to go back to
+   the square look.
+   ========================================================= */
+:root{ --r-xl:30px; --r-lg:24px; --r-md:16px; --r-sm:12px; --soft:0 10px 34px rgba(0,0,0,.07); --soft-2:0 18px 50px rgba(0,0,0,.12); }
+body.track-page, body.orders-page{ background:var(--hs-bg); }
+
+/* hero: curved bottom edge */
+.trk-hero, .od-hero{ border-radius:0 0 46px 46px; }
+@media (max-width:600px){ .trk-hero, .od-hero{ border-radius:0 0 30px 30px; } }
+
+/* search pill */
+.trk-search{ border:0; border-radius:999px; padding:6px; box-shadow:var(--soft-2); background:var(--hs-surface); }
+.trk-search input{ padding:16px 22px; border-radius:999px; }
+.trk-search .btn{ border-radius:999px; margin:0; padding:0 30px; }
+.trk-search::after{ display:none; }
+.trk-search:focus-within{ box-shadow:var(--soft-2), 0 0 0 4px rgba(196,43,56,.16); }
+@media (max-width:600px){ .trk-search{ border-radius:28px; } .trk-search .btn{ margin:6px 0 0; padding:15px 0; } }
+.trk-note{ border-radius:var(--r-sm); border-left:0; }
+
+/* buttons everywhere = pills */
+.btn, .od-btn, .trk-btn-sm, .rider-call, .od-tab, .od-sort, .trk-recent button, .trk-copy{ border-radius:999px !important; }
+.btn.outline, .od-btn.ghost{ background:var(--hs-surface); }
+.od-sort{ padding-left:16px; padding-right:12px; background:var(--hs-surface); }
+.od-tab{ background:var(--hs-surface); border-color:transparent; box-shadow:0 1px 0 rgba(0,0,0,.04), var(--soft); }
+.od-tab.active{ box-shadow:0 8px 20px rgba(0,0,0,.22); }
+.od-search input{ border-radius:999px; border-color:transparent; background:var(--hs-surface); box-shadow:var(--soft); padding-left:44px; }
+.od-search svg{ left:16px; }
+
+/* generic cards */
+.trk-card, .od-card, .trk-empty div, .trk-trust div, .od-login, .od-empty, .od-skel{ border-radius:var(--r-lg); border-color:transparent; background:var(--hs-surface); box-shadow:var(--soft); }
+.trk-empty div, .trk-trust div{ background:var(--hs-surface); }
+.trk-empty div:hover, .trk-trust div:hover, .od-card:hover{ border-color:transparent; box-shadow:var(--soft-2); }
+.trk-empty div::before{ display:none; }
+.trk-status{ border-radius:var(--r-xl); }
+.od-spot{ border:0; border-radius:var(--r-xl); box-shadow:var(--soft-2); }
+.od-spot::before{ display:none; }
+.od-stat{ border-radius:var(--r-lg); }
+.od-empty{ border:2px dashed var(--hs-line); box-shadow:none; background:transparent; }
+
+/* inner boxes */
+.trk-kv-row, .rider-card, .trk-sum .due, .trk-notice, .trk-tag, .od-pay, .od-badge, .od-chip.can, .od-chip-pink, .trk-countdown, .trk-pill, .trk-edd, .trk-cancelled, .trk-chips span, .trk-err, .trk-recent button{ border-radius:var(--r-sm); }
+.od-badge, .od-pay, .od-chip.can, .od-chip-pink, .trk-countdown, .trk-pill, .trk-tag, .trk-chips span{ border-radius:999px; }
+.trk-edd{ border-radius:var(--r-md); }
+.trk-kv-row, .rider-card{ background:var(--hs-bg); border-color:transparent; border-radius:var(--r-md); }
+.trk-sum{ border-top-color:var(--line); }
+.trk-sum .due{ background:var(--hs-bg); border-color:transparent; border-radius:var(--r-md); }
+
+/* images */
+.trk-thumb, .od-thumb, .od-row .od-thumb, .trk-reco-img{ border-radius:var(--r-md); }
+.od-thumb{ border:3px solid var(--hs-line); box-shadow:0 4px 12px rgba(0,0,0,.15); }
+.od-thumb.more{ border-radius:var(--r-md); }
+.trk-qty{ border-radius:10px 0 14px 0; }
+.route-map-leaflet{ border-radius:var(--r-lg); overflow:hidden; border-color:transparent; box-shadow:var(--soft); }
+
+/* order details panel */
+.od-detail-in{ background:var(--hs-bg); border-top:0; margin:0 14px 14px; border-radius:var(--r-md); }
+.od-more{ border-top:0; margin:0; border-radius:0 0 var(--r-lg) var(--r-lg); }
+.od-card.open .od-more{ border-radius:0; }
+.od-mini i{ border-radius:99px; height:4px; }
+.od-steps::before, .od-steps::after{ border-radius:99px; }
+
+/* help cards */
+.trk-help-card{ border-radius:var(--r-lg); }
+.trk-actions .btn{ background:var(--hs-surface); }
+.trk-rate .trk-stars{ gap:8px; }
+
+/* FAQ */
+.trk-faq{ background:var(--hs-bg); border:0; padding:60px 24px; }
+.trk-faq-in{ background:var(--hs-surface); border-radius:var(--r-xl); padding:46px; box-shadow:var(--soft); }
+.trk-faq-list details{ border:0; background:var(--hs-bg); border-radius:var(--r-md); margin-bottom:10px; padding:0 18px; }
+.trk-faq-list details:last-child{ border:0; }
+.trk-faq-list summary{ padding:18px 0; font-size:18px; }
+.trk-faq-list summary:hover{ padding-left:4px; }
+.trk-faq-list details[open]{ background:var(--hs-danger-bg); }
+@media (max-width:800px){ .trk-faq-in{ padding:28px 20px; } }
+
+/* checkpoint icons + skeletons */
+.checkpoint-icon{ border-color:transparent; background:var(--hs-bg); }
+.sk-line, .sk{ border-radius:99px; }
+.trk-sk > div{ border-radius:var(--r-lg); border-color:transparent; background:var(--hs-surface); box-shadow:var(--soft); }
+.trk-reco-item .trk-reco-img{ box-shadow:var(--soft); border:0; }
+
+/* login card on orders */
+.od-login{ border:0; box-shadow:var(--soft-2); border-radius:var(--r-xl); }
